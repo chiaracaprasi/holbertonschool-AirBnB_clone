@@ -48,6 +48,7 @@ class TestBaseDocs(unittest.TestCase):
         for func in self.base_funcs:
             self.assertTrue(len(func[1].__doc__) >= 1)
 
+
 class TestBaseModel(unittest.TestCase):
     """ Test for BaseModel class """
 
@@ -61,4 +62,4 @@ class TestBaseModel(unittest.TestCase):
 
     def test_type_creation(self):
         """ will test the correct type of creation """
-        self.assertEqual(type(self.temp_b), BaseModel)
+        self.assertEqual(type(self.temp_b), Base)

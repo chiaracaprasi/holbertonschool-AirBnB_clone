@@ -47,3 +47,18 @@ class TestBaseDocs(unittest.TestCase):
         """Tests for docstrings in all functions"""
         for func in self.base_funcs:
             self.assertTrue(len(func[1].__doc__) >= 1)
+
+class TestBaseModel(unittest.TestCase):
+    """ Test for BaseModel class """
+
+    def setUp(self):
+        """ general test setup, will create a temp baseModel """
+        self.temp_b = Base()
+
+    def tearDown(self):
+        """ general tear down, will delete the temp baseModel """
+        self.temp_b = None
+
+    def test_type_creation(self):
+        """ will test the correct type of creation """
+        self.assertEqual(type(self.temp_b), BaseModel)

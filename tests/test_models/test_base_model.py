@@ -55,11 +55,49 @@ class TestBaseModel(unittest.TestCase):
     def setUp(self):
         """ general test setup, will create a temp baseModel """
         self.temp_b = Base()
+        self.temp_b1 = Base()
 
     def tearDown(self):
         """ general tear down, will delete the temp baseModel """
         self.temp_b = None
+        self.temp_b1 = None
 
     def test_type_creation(self):
         """ will test the correct type of creation """
         self.assertEqual(type(self.temp_b), Base)
+        self.assertEqual(type(self.temp_b1), Base)
+
+    def test_uuid(self):
+        """test UUID for BaseModel """
+        self.assertNotEqual(self.temp_b.id, self.temp_b1.id)
+        self.assertRegex(self.temp_b.id,
+                         '^[0-9a-f]{8}-[0-9a-f]{4}'
+                         '-[0-9a-f]{4}-[0-9a-f]{4}'
+                         '-[0-9a-f]{12}$')
+        self.assertRegex(self.temp_b1.id,
+                         '^[0-9a-f]{8}-[0-9a-f]{4}'
+                         '-[0-9a-f]{4}-[0-9a-f]{4}'
+                         '-[0-9a-f]{12}$')
+
+    def test_update(self):
+        """ will test the ability to update """
+        self.temp_b.name = "Betty"
+        self.temp_b.age = 105
+        self.assertEqual(self.temp_b.name, "Betty")
+        self.assertEqual(self.temp_b.age, 105)
+
+    def test_str_method(self):
+        """ will test the __str__ method to ensure it is working """
+        returned_string = str(self.temp_b)
+        test_string = f"[BaseModel] ({self.temp_b.id}) {self.temp_b.__dict__}"
+        self.assertEqual(returned_string, test_string)
+
+    def test_to_dict(self):
+        """tests the to_dict method to ensure it is working """
+        temp_b_dict = self.temp_b.to_dict()
+        self.assertEqual(str, type(temp_b_dict['created_at']))
+        self.assertEqual(temp_b_dict['created_at'],
+                         self.temp_b.created_at.isoformat())
+        self.assertEqual(temp_b_dict['__class__'],
+                         self.temp_b.__class__.__name__)
+        self.assertEqual(temp_b_dict['id'], self.temp_b.id)

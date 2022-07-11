@@ -20,6 +20,7 @@
 .places > article > h2 {
     font-size: 30px;
     text-align: center;
+    margin: 0;
 }
 
 
@@ -31,8 +32,6 @@
     border: 1px solid #FF5A5F;
     border-radius: 4px;
     display: flex;
-    /* align-items: center; */
-    /* align-content: center; */
     justify-content: space-around; 
     
 }

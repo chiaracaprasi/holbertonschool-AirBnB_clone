@@ -29,6 +29,7 @@ ul {
     color: #484848;
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 li {
@@ -84,17 +85,18 @@ button:hover {
 
  .popover {
     visibility: hidden; 
-    position: relative;
+    position: absolute;
     z-index: 1; 
     width: 100%;
-    background-color: #FAFAFA;
-    color: #484848;
+    background-color: #FAFAFA; 
+    /* background-color: blue;
+    color: white; */
+    color: #484848; 
     border: 1px solid #DDDDDD;
     border-radius: 4px;
-    padding-top: 18px;
+    padding-top: 15px;
     padding-bottom: 20px;
-    margin-top: 0;
-    
+    top: 100%;
 } 
 
 
